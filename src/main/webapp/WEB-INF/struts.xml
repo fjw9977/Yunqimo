@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="hello">
+            <result name="success">/cnmd.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <!--管理员登录-->
+        <action name="adminLogin" class="action.AdminAction">
+            <result name = "success" type="chain">findAll</result>
+            <result name ="xindian" type="chain">findXin</result>
+            <result name ="login">/adminlogin.jsp</result>
+        </action>
+        <!--查询信电学生信息-->
+        <action name="findXin" class="action.StudentAction" method="findXin">
+            <result name="success">/studentinformXD.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <!--查询所有学生信息-->
+        <action name="findAll" class="action.StudentAction" method="findAll">
+            <result name="success">/studentinform.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <!--学生登录-->
+        <action name="studentLogin" class="action.StudentAction">
+            <result name = "success" type="chain">findStudent</result>
+            <result name ="login">/studentlogin.jsp</result>
+        </action>
+
+        <!--查看学生个人信息-->
+        <action name="findStudent" class="action.StudentAction" method="findStudent">
+            <result name="success">/studentsuccess.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <!--根据姓名模糊查询学生信息-->
+        <action name="findByName" class="action.StudentAction" method="findByName">
+            <result name="success">/studentinform.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <!--信电管理员根据姓名模糊查询学生信息-->
+        <action name="findByXinName" class="action.StudentAction" method="findByXinName">
+            <result name="success">/studentinformXD.jsp</result>
+            <result name="errors">/error.jsp</result>
+        </action>
+        <!--添加学生信息-->
+        <action name="insert" class="action.StudentAction" method="insert">
+            <result name = "success" type="chain">findAll</result>
+            <result name ="error">/error.jsp</result>
+        </action>
+        <!--修改学生信息-->
+        <action name="update" class="action.StudentAction" method="update">
+            <result name = "success" type="chain">findAll</result>
+            <result name ="error">/error.jsp</result>
+        </action>
+        <!--删除学生信息-->
+        <action name="delete" class="action.StudentAction" method="delete">
+            <result name = "success" type="chain">findAll</result>
+            <result name ="error">/error.jsp</result>
+        </action>
+        <!--修改学生个人密码-->
+        <action name="updatePassword" class="action.StudentAction" method="updatePassword">
+            <result name = "success" type="chain">findStudent</result>
+            <result name ="errors">/error.jsp</result>
+        </action>
+
+
+    </package>
+</struts>

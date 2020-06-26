@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+<!--    <property name="connection.url">-->
+<!--      jdbc:mysql://localhost:3306/hibernate?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=UTC-->
+<!--    </property>-->
+<!--    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>-->
+<!--    <property name="connection.username">root</property>-->
+<!--    <property name="connection.password">123</property>-->
+    <!--数据连接池的定义-->
+      <property name="url">
+          jdbc:mysql://localhost:3306/hibernate?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC
+      </property>
+      <property name="driver_class">com.mysql.cj.jdbc.Driver </property>
+      <property name="username" >root</property>
+      <property name="password" >123456</property>
+      <property name="current_session_context_class">thread</property>
+
+    <!--SQL dialect 方言-->
+    <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+    <property name="connection.provider_class">com.alibaba.druid.support.hibernate.DruidConnectionProvider</property>
+    <!--数据库连接池“缓冲池”，为了提高效率 linkedlist适合做连接池集合 前面连接数据库四个必备需要改变-->
+    <property name="hibernate.current_session_context_class">thread</property><!--getCurrentSession连接-->
+    <!--Echo all executed SQL to stdout-->
+    <property name="show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
+<!--    <property name="format_sql">true</property>-->
+    <!--DDL DML DQL-->
+    <property name="hibernate.hbm2ddl.auto">update</property>
+
+      <!-- 注册实体类 全限定类名-->
+      <mapping class="PO.Student"></mapping>
+      <mapping class="PO.Admin"></mapping>
+  </session-factory>
+</hibernate-configuration>
